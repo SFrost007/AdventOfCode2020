@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F413EA9E25784E6100CA5BE2 /* Day2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F413EA9D25784E6100CA5BE2 /* Day2.swift */; };
+		F413EAA225784E6F00CA5BE2 /* Day2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F413EAA125784E6F00CA5BE2 /* Day2Tests.swift */; };
+		F413EAA825784E9100CA5BE2 /* Day2.txt in Resources */ = {isa = PBXBuildFile; fileRef = F413EAA725784E9100CA5BE2 /* Day2.txt */; };
 		F4F746F025784934000F3978 /* AdventOfCode2020.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4F746E625784933000F3978 /* AdventOfCode2020.framework */; };
 		F4F747032578494E000F3978 /* Day1.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F747022578494E000F3978 /* Day1.swift */; };
 		F4F7470725784961000F3978 /* Day1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F7470625784961000F3978 /* Day1Tests.swift */; };
@@ -24,6 +27,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F413EA9D25784E6100CA5BE2 /* Day2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day2.swift; sourceTree = "<group>"; };
+		F413EAA125784E6F00CA5BE2 /* Day2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day2Tests.swift; sourceTree = "<group>"; };
+		F413EAA725784E9100CA5BE2 /* Day2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Day2.txt; sourceTree = "<group>"; };
 		F4F746E625784933000F3978 /* AdventOfCode2020.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdventOfCode2020.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4F746EA25784933000F3978 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4F746EF25784934000F3978 /* AdventOfCode2020Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdventOfCode2020Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				F4F747022578494E000F3978 /* Day1.swift */,
+				F413EA9D25784E6100CA5BE2 /* Day2.swift */,
 				F4F746EA25784933000F3978 /* Info.plist */,
 			);
 			path = AdventOfCode2020;
@@ -83,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				F4F7470625784961000F3978 /* Day1Tests.swift */,
+				F413EAA125784E6F00CA5BE2 /* Day2Tests.swift */,
 				F4F7470E257849F5000F3978 /* InputData */,
 				F4F746F625784934000F3978 /* Info.plist */,
 			);
@@ -93,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				F4F7471525784A24000F3978 /* Day1.txt */,
+				F413EAA725784E9100CA5BE2 /* Day2.txt */,
 			);
 			path = InputData;
 			sourceTree = "<group>";
@@ -196,6 +205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4F7471625784A24000F3978 /* Day1.txt in Resources */,
+				F413EAA825784E9100CA5BE2 /* Day2.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4F747032578494E000F3978 /* Day1.swift in Sources */,
+				F413EA9E25784E6100CA5BE2 /* Day2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4F7470725784961000F3978 /* Day1Tests.swift in Sources */,
+				F413EAA225784E6F00CA5BE2 /* Day2Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
