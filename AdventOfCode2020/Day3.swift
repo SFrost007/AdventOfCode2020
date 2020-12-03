@@ -9,27 +9,29 @@ import Foundation
 
 class Day3 {
     
-    // MARK: - Input parsing
+    // MARK: - Initialisation
     
-    static func parseInput(from url: URL) -> [[Bool]] {
-        return try! String(contentsOf: url).components(separatedBy: .newlines)
+    let inputData: [[Bool]]
+    
+    init(inputURL: URL) {
+        inputData = try! String(contentsOf: inputURL).components(separatedBy: .newlines)
             .map { $0.map { $0 == "#" } }
             .filter { !$0.isEmpty } // Remove trailing empty line
     }
     
     // MARK: - Problem cases
     
-    static func part1(input: [[Bool]]) -> Int {
-        return checkForTrees(in: input, xMovement: 3, yMovement: 1)
+    func part1() -> Int {
+        return Self.checkForTrees(in: inputData, xMovement: 3, yMovement: 1)
     }
     
-    static func part2(input: [[Bool]]) -> Int {
+    func part2() -> Int {
         return [
-            checkForTrees(in: input, xMovement: 1, yMovement: 1),
-            checkForTrees(in: input, xMovement: 3, yMovement: 1),
-            checkForTrees(in: input, xMovement: 5, yMovement: 1),
-            checkForTrees(in: input, xMovement: 7, yMovement: 1),
-            checkForTrees(in: input, xMovement: 1, yMovement: 2)
+            Self.checkForTrees(in: inputData, xMovement: 1, yMovement: 1),
+            Self.checkForTrees(in: inputData, xMovement: 3, yMovement: 1),
+            Self.checkForTrees(in: inputData, xMovement: 5, yMovement: 1),
+            Self.checkForTrees(in: inputData, xMovement: 7, yMovement: 1),
+            Self.checkForTrees(in: inputData, xMovement: 1, yMovement: 2)
         ].reduce(1, *)
     }
     

@@ -10,22 +10,17 @@ import XCTest
 
 class Day2Tests: AoCTestCase {
     
-    lazy var exampleInput: [String] = {
-        return Day2.parseInput(from: urlForExampleInput())
-    }()
-    
-    lazy var myInput: [String] = {
-        return Day2.parseInput(from: urlForMyInput())
-    }()
+    let example = Day2(inputURL: urlForExampleData(day: 2))
+    let myInput = Day2(inputURL: urlForMyInputData(day: 2))
     
     func testPart1() {
         XCTAssertTrue(Day2.doesLineMeetPolicy1("1-3 a: abcde"))
         XCTAssertFalse(Day2.doesLineMeetPolicy1("1-3 b: cdefg"))
         XCTAssertTrue(Day2.doesLineMeetPolicy1("2-9 c: ccccccccc"))
-        XCTAssertEqual(Day2.part1(input: exampleInput), 2)
-        print("*****\nPart 1: \(Day2.part1(input: myInput))\n*****")
+        XCTAssertEqual(example.part1(), 2)
+        print("Answer for Day 2 Part 1: \(myInput.part1())")
         measure {
-            let _ = Day2.part1(input: myInput)
+            let _ = myInput.part1()
         }
     }
     
@@ -33,10 +28,10 @@ class Day2Tests: AoCTestCase {
         XCTAssertTrue(Day2.doesLineMeetPolicy2("1-3 a: abcde"))
         XCTAssertFalse(Day2.doesLineMeetPolicy2("1-3 b: cdefg"))
         XCTAssertFalse(Day2.doesLineMeetPolicy2("2-9 c: ccccccccc"))
-        XCTAssertEqual(Day2.part2(input: exampleInput), 1)
-        print("*****\nPart 2: \(Day2.part2(input: myInput))\n*****")
+        XCTAssertEqual(example.part2(), 1)
+        print("Answer for Day 2 Part 2: \(myInput.part2())")
         measure {
-            let _ = Day2.part2(input: myInput)
+            let _ = myInput.part2()
         }
     }
 

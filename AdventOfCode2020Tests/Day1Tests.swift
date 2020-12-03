@@ -10,27 +10,22 @@ import XCTest
 
 class Day1Tests: AoCTestCase {
     
-    lazy var exampleInput: [Int] = {
-        return Day1.parseInput(from: urlForExampleInput())
-    }()
-    
-    lazy var myInput: [Int] = {
-        return Day1.parseInput(from: urlForMyInput())
-    }()
+    let example = Day1(inputURL: urlForExampleData(day: 1))
+    let myInput = Day1(inputURL: urlForMyInputData(day: 1))
     
     func testPart1() {
-        XCTAssertEqual(Day1.part1(input: exampleInput), 514579)
-        print("*****\nPart 1: \(Day1.part1(input: myInput))\n*****")
+        XCTAssertEqual(example.part1(), 514579)
+        print("Answer for Day 1 Part 1: \(myInput.part1())")
         measure {
-            let _ = Day1.part1(input: myInput)
+            let _ = myInput.part1()
         }
     }
     
     func testPart2() {
-        XCTAssertEqual(Day1.part2(input: exampleInput), 241861950)
-        print("*****\nPart 2: \(Day1.part2(input: myInput))\n*****")
+        XCTAssertEqual(example.part2(), 241861950)
+        print("Answer for Day 1 Part 2: \(myInput.part2())")
         measure {
-            let _ = Day1.part2(input: myInput)
+            let _ = myInput.part2()
         }
     }
 

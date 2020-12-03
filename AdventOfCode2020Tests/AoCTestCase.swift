@@ -9,21 +9,17 @@ import XCTest
 
 class AoCTestCase: XCTestCase {
     
-    func urlForTestResource(forResource: String, withExtension: String) -> URL {
-        let testBundle = Bundle(for: type(of: self))
-        return testBundle.url(forResource: forResource, withExtension: withExtension)!
+    private class func urlForTestResource(_ resource: String, withExtension: String) -> URL {
+        let testBundle = Bundle(for: NSClassFromString(String(reflecting: Self.self))!)
+        return testBundle.url(forResource: resource, withExtension: withExtension)!
     }
     
-    func urlForExampleInput() -> URL {
-        let className = String(describing: type(of: self))
-        let filename = "\(className.replacingOccurrences(of: "Tests", with: ""))_Example"
-        return urlForTestResource(forResource: filename, withExtension: "txt")
+    class func urlForExampleData(day: Int) -> URL {
+        return urlForTestResource("Day\(day)_Example", withExtension: "txt")
     }
     
-    func urlForMyInput() -> URL {
-        let className = String(describing: type(of: self))
-        let filename = "\(className.replacingOccurrences(of: "Tests", with: ""))_MyInput"
-        return urlForTestResource(forResource: filename, withExtension: "txt")
+    class func urlForMyInputData(day: Int) -> URL {
+        return urlForTestResource("Day\(day)_MyInput", withExtension: "txt")
     }
     
 }

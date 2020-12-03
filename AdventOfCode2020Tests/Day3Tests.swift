@@ -10,31 +10,27 @@ import XCTest
 
 class Day3Tests: AoCTestCase {
     
-    lazy var exampleInput: [[Bool]] = {
-        return Day3.parseInput(from: urlForExampleInput())
-    }()
-    
-    lazy var myInput: [[Bool]] = {
-        return Day3.parseInput(from: urlForMyInput())
-    }()
+    let example = Day3(inputURL: urlForExampleData(day: 3))
+    let myInput = Day3(inputURL: urlForMyInputData(day: 3))
     
     func testPart1() {
-        XCTAssertEqual(Day3.checkForTrees(in: exampleInput, xMovement: 3, yMovement: 1), 7)
-        print("*****\nPart 1: \(Day3.part1(input: myInput))\n*****")
+        XCTAssertEqual(example.part1(), 7)
+        print("Answer for Day 3 Part 1: \(myInput.part1())")
         measure {
-            let _ = Day3.part1(input: myInput)
+            let _ = myInput.part1()
         }
     }
     
     func testPart2() {
-        XCTAssertEqual(Day3.checkForTrees(in: exampleInput, xMovement: 1, yMovement: 1), 2)
-        XCTAssertEqual(Day3.checkForTrees(in: exampleInput, xMovement: 3, yMovement: 1), 7)
-        XCTAssertEqual(Day3.checkForTrees(in: exampleInput, xMovement: 5, yMovement: 1), 3)
-        XCTAssertEqual(Day3.checkForTrees(in: exampleInput, xMovement: 7, yMovement: 1), 4)
-        XCTAssertEqual(Day3.checkForTrees(in: exampleInput, xMovement: 1, yMovement: 2), 2)
-        print("*****\nPart 2: \(Day3.part2(input: myInput))\n*****")
+        XCTAssertEqual(Day3.checkForTrees(in: example.inputData, xMovement: 1, yMovement: 1), 2)
+        XCTAssertEqual(Day3.checkForTrees(in: example.inputData, xMovement: 3, yMovement: 1), 7)
+        XCTAssertEqual(Day3.checkForTrees(in: example.inputData, xMovement: 5, yMovement: 1), 3)
+        XCTAssertEqual(Day3.checkForTrees(in: example.inputData, xMovement: 7, yMovement: 1), 4)
+        XCTAssertEqual(Day3.checkForTrees(in: example.inputData, xMovement: 1, yMovement: 2), 2)
+        XCTAssertEqual(example.part2(), 336)
+        print("Answer for Day 3 Part 2: \(myInput.part2())")
         measure {
-            let _ = Day3.part2(input: myInput)
+            let _ = myInput.part2()
         }
     }
 

@@ -9,20 +9,22 @@ import Foundation
 
 class Day2 {
     
-    // MARK: - Input parsing
+    // MARK: - Initialisation
     
-    static func parseInput(from url: URL) -> [String] {
-        return try! String(contentsOf: url).components(separatedBy: .newlines)
+    let inputData: [String]
+    
+    init(inputURL: URL) {
+        inputData = try! String(contentsOf: inputURL).components(separatedBy: .newlines)
     }
     
     // MARK: - Problem cases
     
-    static func part1(input: [String]) -> Int {
-        return input.filter { doesLineMeetPolicy1($0) }.count
+    func part1() -> Int {
+        return inputData.filter { Self.doesLineMeetPolicy1($0) }.count
     }
     
-    static func part2(input: [String]) -> Int {
-        return input.filter { doesLineMeetPolicy2($0) }.count
+    func part2() -> Int {
+        return inputData.filter { Self.doesLineMeetPolicy2($0) }.count
     }
     
     // MARK: - Worker functions

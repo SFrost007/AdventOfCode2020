@@ -9,17 +9,19 @@ import Foundation
 
 class Day1 {
     
-    // MARK: - Input parsing
+    // MARK: - Initialisation
     
-    static func parseInput(from url: URL) -> [Int] {
-        return try! String(contentsOf: url).components(separatedBy: .newlines)
+    let inputData: [Int]
+    
+    init(inputURL: URL) {
+        inputData = try! String(contentsOf: inputURL).components(separatedBy: .newlines)
             .compactMap { Int($0) }
     }
     
     // MARK: - Problem cases
     
-    static func part1(input: [Int]) -> Int {
-        let sortedArray = input.sorted()
+    func part1() -> Int {
+        let sortedArray = inputData.sorted()
         for (i, value1) in sortedArray.enumerated() {
             for value2 in sortedArray[i...].reversed() {
                 let sum = value1 + value2
@@ -33,8 +35,8 @@ class Day1 {
         fatalError("No result found")
     }
     
-    static func part2(input: [Int]) -> Int {
-        let sortedArray = input.sorted()
+    func part2() -> Int {
+        let sortedArray = inputData.sorted()
         for (i, value1) in sortedArray.enumerated() {
             for (j, value2) in sortedArray[i...].reversed().enumerated() {
                 if value1 + value2 > 2020 { continue }
