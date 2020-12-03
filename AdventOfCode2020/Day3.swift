@@ -9,11 +9,15 @@ import Foundation
 
 class Day3 {
     
+    // MARK: - Input parsing
+    
     static func parseInput(from url: URL) -> [[Bool]] {
         return try! String(contentsOf: url).components(separatedBy: .newlines)
             .map { $0.map { $0 == "#" } }
             .filter { !$0.isEmpty } // Remove trailing empty line
     }
+    
+    // MARK: - Problem cases
     
     static func part1(input: [[Bool]]) -> Int {
         return checkForTrees(in: input, xMovement: 3, yMovement: 1)
@@ -28,6 +32,8 @@ class Day3 {
             checkForTrees(in: input, xMovement: 1, yMovement: 2)
         ].reduce(1, *)
     }
+    
+    // MARK: - Worker function
     
     static func checkForTrees(in input: [[Bool]], xMovement: Int, yMovement: Int) -> Int {
         var x = 0, y = 0, trees = 0

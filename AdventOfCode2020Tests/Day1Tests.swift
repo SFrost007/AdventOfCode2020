@@ -8,25 +8,29 @@
 import XCTest
 @testable import AdventOfCode2020
 
-class Day1Tests: XCTestCase {
+class Day1Tests: AoCTestCase {
     
-    lazy var intArray: [Int] = {
-        let testBundle = Bundle(for: type(of: self))
-        let inputURL = testBundle.url(forResource: "Day1", withExtension: "txt")!
-        return try! String(contentsOf: inputURL).components(separatedBy: .newlines).compactMap { Int($0) }
+    lazy var exampleInput: [Int] = {
+        return Day1.parseInput(from: urlForExampleInput())
+    }()
+    
+    lazy var myInput: [Int] = {
+        return Day1.parseInput(from: urlForMyInput())
     }()
     
     func testPart1() {
-        XCTAssertEqual(Day1.part1(input: intArray), 252724)
+        XCTAssertEqual(Day1.part1(input: exampleInput), 514579)
+        print("*****\nPart 1: \(Day1.part1(input: myInput))\n*****")
         measure {
-            let _ = Day1.part1(input: intArray)
+            let _ = Day1.part1(input: myInput)
         }
     }
     
     func testPart2() {
-        XCTAssertEqual(Day1.part2(input: intArray), 276912720)
+        XCTAssertEqual(Day1.part2(input: exampleInput), 241861950)
+        print("*****\nPart 2: \(Day1.part2(input: myInput))\n*****")
         measure {
-            let _ = Day1.part2(input: intArray)
+            let _ = Day1.part2(input: myInput)
         }
     }
 

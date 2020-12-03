@@ -9,6 +9,15 @@ import Foundation
 
 class Day1 {
     
+    // MARK: - Input parsing
+    
+    static func parseInput(from url: URL) -> [Int] {
+        return try! String(contentsOf: url).components(separatedBy: .newlines)
+            .compactMap { Int($0) }
+    }
+    
+    // MARK: - Problem cases
+    
     static func part1(input: [Int]) -> Int {
         let sortedArray = input.sorted()
         for (i, value1) in sortedArray.enumerated() {

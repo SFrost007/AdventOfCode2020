@@ -8,25 +8,35 @@
 import XCTest
 @testable import AdventOfCode2020
 
-class Day2Tests: XCTestCase {
+class Day2Tests: AoCTestCase {
     
-    lazy var inputLines: [String] = {
-        let testBundle = Bundle(for: type(of: self))
-        let inputURL = testBundle.url(forResource: "Day2", withExtension: "txt")!
-        return try! String(contentsOf: inputURL).components(separatedBy: .newlines)
+    lazy var exampleInput: [String] = {
+        return Day2.parseInput(from: urlForExampleInput())
+    }()
+    
+    lazy var myInput: [String] = {
+        return Day2.parseInput(from: urlForMyInput())
     }()
     
     func testPart1() {
-        XCTAssertEqual(Day2.part1(input: inputLines), 414)
+        XCTAssertTrue(Day2.doesLineMeetPolicy1("1-3 a: abcde"))
+        XCTAssertFalse(Day2.doesLineMeetPolicy1("1-3 b: cdefg"))
+        XCTAssertTrue(Day2.doesLineMeetPolicy1("2-9 c: ccccccccc"))
+        XCTAssertEqual(Day2.part1(input: exampleInput), 2)
+        print("*****\nPart 1: \(Day2.part1(input: myInput))\n*****")
         measure {
-            let _ = Day2.part1(input: inputLines)
+            let _ = Day2.part1(input: myInput)
         }
     }
     
     func testPart2() {
-        XCTAssertEqual(Day2.part2(input: inputLines), 413)
+        XCTAssertTrue(Day2.doesLineMeetPolicy2("1-3 a: abcde"))
+        XCTAssertFalse(Day2.doesLineMeetPolicy2("1-3 b: cdefg"))
+        XCTAssertFalse(Day2.doesLineMeetPolicy2("2-9 c: ccccccccc"))
+        XCTAssertEqual(Day2.part2(input: exampleInput), 1)
+        print("*****\nPart 2: \(Day2.part2(input: myInput))\n*****")
         measure {
-            let _ = Day2.part2(input: inputLines)
+            let _ = Day2.part2(input: myInput)
         }
     }
 

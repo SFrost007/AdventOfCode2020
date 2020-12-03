@@ -9,7 +9,25 @@ import Foundation
 
 class Day2 {
     
-    private static func doesLineMeetPolicy1(_ line: String) -> Bool {
+    // MARK: - Input parsing
+    
+    static func parseInput(from url: URL) -> [String] {
+        return try! String(contentsOf: url).components(separatedBy: .newlines)
+    }
+    
+    // MARK: - Problem cases
+    
+    static func part1(input: [String]) -> Int {
+        return input.filter { doesLineMeetPolicy1($0) }.count
+    }
+    
+    static func part2(input: [String]) -> Int {
+        return input.filter { doesLineMeetPolicy2($0) }.count
+    }
+    
+    // MARK: - Worker functions
+    
+    static func doesLineMeetPolicy1(_ line: String) -> Bool {
         let parts = line.components(separatedBy: .whitespaces)
         guard parts.count == 3 else { return false }
         
@@ -22,11 +40,7 @@ class Day2 {
         return matchedChars >= minMax[0] && matchedChars <= minMax[1]
     }
     
-    static func part1(input: [String]) -> Int {
-        return input.filter { doesLineMeetPolicy1($0) }.count
-    }
-    
-    private static func doesLineMeetPolicy2(_ line: String) -> Bool {
+    static func doesLineMeetPolicy2(_ line: String) -> Bool {
         let parts = line.components(separatedBy: .whitespaces)
         guard parts.count == 3 else { return false }
         
@@ -38,10 +52,6 @@ class Day2 {
         let secondMatch = password.prefix(checkIndices[1]).suffix(1) == searchChar
         // XOR
         return firstMatch != secondMatch && (firstMatch || secondMatch)
-    }
-    
-    static func part2(input: [String]) -> Int {
-        return input.filter { doesLineMeetPolicy2($0) }.count
     }
     
 }
