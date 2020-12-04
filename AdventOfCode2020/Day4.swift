@@ -37,12 +37,12 @@ class Day4 {
     }
     
     private static func passportStringToDictionary(_ input: String) -> [String: String] {
-        var dictionary: [String: String] = [:]
-        input.components(separatedBy: .whitespacesAndNewlines)
+        return input.components(separatedBy: .whitespacesAndNewlines)
             .filter { !$0.isEmpty }
             .compactMap { $0.components(separatedBy: ":") }
-            .forEach { dictionary[$0[0]] = $0[1] }
-        return dictionary
+            .reduce(into: [:], { resultDict, stringParts in
+                resultDict[stringParts[0]] = stringParts[1]
+            })
     }
     
     // MARK: - Helper enum
