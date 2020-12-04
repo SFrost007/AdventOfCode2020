@@ -72,7 +72,7 @@ class Day4 {
             case .hcl:
                 return value.range(of: "^#[0-9a-fA-F]{6}$", options: .regularExpression) != nil
             case .ecl:
-                let validColors = "amb blu brn gry grn hzl oth".components(separatedBy: .whitespaces)
+                let validColors = ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"]
                 return validColors.contains(value)
             case .pid:
                 guard value.count == 9 else { return false }
