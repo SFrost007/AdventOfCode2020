@@ -40,7 +40,33 @@ class Day5 {
     // MARK: - Worker functions
     
     static func findSeatLocation(_ input: String) -> SeatLocation {
-        return SeatLocation(row: 0, column: 0)
+        var rowRange = 0...127
+        for char in input.prefix(7) {
+            var newMin = rowRange.lowerBound
+            var newMax = rowRange.upperBound
+            let split = ((newMax - newMin) / 2) + 1
+            switch char {
+            case "F": newMax = newMax - split
+            case "B": newMin = newMin + split
+            default: fatalError()
+            }
+            rowRange = newMin...newMax
+        }
+        
+        var columnRange = 0...7
+        for char in input.suffix(3) {
+            var newMin = columnRange.lowerBound
+            var newMax = columnRange.upperBound
+            let split = ((newMax - newMin) / 2) + 1
+            switch char {
+            case "L": newMax = newMax - split
+            case "R": newMin = newMin + split
+            default: fatalError()
+            }
+            columnRange = newMin...newMax
+        }
+        
+        return SeatLocation(row: rowRange.lowerBound, column: columnRange.lowerBound)
     }
     
     static func getSeatID(_ location: SeatLocation) -> Int {
