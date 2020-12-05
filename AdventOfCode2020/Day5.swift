@@ -53,28 +53,22 @@ class Day5 {
     static func findSeatLocation(_ input: String) -> SeatLocation {
         var rowRange = 0...127
         for char in input.prefix(7) {
-            var newMin = rowRange.lowerBound
-            var newMax = rowRange.upperBound
-            let split = ((newMax - newMin) / 2) + 1
+            let split = ((rowRange.upperBound - rowRange.lowerBound) / 2) + 1
             switch char {
-            case "F": newMax = newMax - split
-            case "B": newMin = newMin + split
+            case "F": rowRange = rowRange.lowerBound...(rowRange.upperBound - split)
+            case "B": rowRange = (rowRange.lowerBound + split)...rowRange.upperBound
             default: fatalError()
             }
-            rowRange = newMin...newMax
         }
         
         var columnRange = 0...7
         for char in input.suffix(3) {
-            var newMin = columnRange.lowerBound
-            var newMax = columnRange.upperBound
-            let split = ((newMax - newMin) / 2) + 1
+            let split = ((columnRange.upperBound - columnRange.lowerBound) / 2) + 1
             switch char {
-            case "L": newMax = newMax - split
-            case "R": newMin = newMin + split
+            case "L": columnRange = columnRange.lowerBound...(columnRange.upperBound - split)
+            case "R": columnRange = (columnRange.lowerBound + split)...columnRange.upperBound
             default: fatalError()
             }
-            columnRange = newMin...newMax
         }
         
         return SeatLocation(row: rowRange.lowerBound, column: columnRange.lowerBound)
