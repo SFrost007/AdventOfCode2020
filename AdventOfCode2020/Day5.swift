@@ -27,6 +27,17 @@ class Day5 {
     }
     
     func part2() -> Int {
+        let boardingPasses = inputData
+            .map { Self.findSeatLocation($0) }
+            .map { Self.getSeatID($0) }
+            .sorted()
+        
+        for (index, seatID) in boardingPasses.enumerated() {
+            guard index > 0 else { continue }
+            if boardingPasses[index - 1] != seatID - 1 {
+                return seatID - 1
+            }
+        }
         return -1
     }
     

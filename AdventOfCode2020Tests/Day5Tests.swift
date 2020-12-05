@@ -32,7 +32,6 @@ class Day5Tests: AoCTestCase {
     }
     
     func testPart2() {
-        XCTFail()
         print("Answer for Day 5 Part 2: \(myInput.part2())")
         measure {
             let _ = myInput.part2()
