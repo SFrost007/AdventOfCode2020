@@ -28,7 +28,13 @@ class Day6Tests: AoCTestCase {
     }
     
     func testPart2() {
-        XCTFail()
+        XCTAssertEqual(Day6.answeredByAll(in: example.inputData[0]), 3)
+        XCTAssertEqual(Day6.answeredByAll(in: example.inputData[1]), 0)
+        XCTAssertEqual(Day6.answeredByAll(in: example.inputData[2]), 1)
+        XCTAssertEqual(Day6.answeredByAll(in: example.inputData[3]), 1)
+        XCTAssertEqual(Day6.answeredByAll(in: example.inputData[4]), 1)
+        XCTAssertEqual(example.part2(), 6)
+        
         print("Answer for Day 5 Part 2: \(myInput.part2())")
         measure {
             let _ = myInput.part2()

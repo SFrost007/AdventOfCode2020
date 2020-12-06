@@ -24,7 +24,7 @@ class Day6 {
     }
     
     func part2() -> Int {
-        fatalError("Not implemented")
+        return inputData.map { Self.answeredByAll(in: $0) }.reduce(0, +)
     }
     
     // MARK: - Worker functions
@@ -36,6 +36,10 @@ class Day6 {
             uniques.insert(char)
         }
         return uniques.count
+    }
+    
+    static func answeredByAll(in input: String) -> Int {
+        return -1
     }
     
 }
