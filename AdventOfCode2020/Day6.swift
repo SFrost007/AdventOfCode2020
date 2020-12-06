@@ -30,7 +30,12 @@ class Day6 {
     // MARK: - Worker functions
     
     static func uniqueAnswers(in input: String) -> Int {
-        return 0
+        var uniques: Set<Character> = []
+        for char in input {
+            guard char != "\n" else { continue }
+            uniques.insert(char)
+        }
+        return uniques.count
     }
     
 }
