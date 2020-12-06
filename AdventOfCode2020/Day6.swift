@@ -39,7 +39,14 @@ class Day6 {
     }
     
     static func answeredByAll(in input: String) -> Int {
-        return -1
+        let people = input.components(separatedBy: .newlines).filter { !$0.isEmpty }
+        var answerCounts: [Character: Int] = [:]
+        for personAnswer in people {
+            for char in personAnswer {
+                answerCounts[char] = (answerCounts[char] ?? 0) + 1
+            }
+        }
+        return answerCounts.filter { $0.value == people.count }.count
     }
     
 }
