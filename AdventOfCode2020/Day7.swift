@@ -68,19 +68,12 @@ class Day7 {
         in instructions: [Instruction],
         alreadyFoundContainers: Set<String> = []
     ) -> Set<String> {
-        var result: Set<String> = []
-        
-        for instruction in instructions {
-            if alreadyFoundContainers.contains(instruction.containerBagColor) { continue }
-            for innerBag in instruction.innerBags {
-                if innerBag.color == searchColor {
-                    result.insert(instruction.containerBagColor)
-                }
-            }
-        }
-        
-        let newFilter = result.union(alreadyFoundContainers)
-        result.forEach {
+        var result = Set(instructions
+            .filter { $0.innerBags.map { $0.color }.contains(searchColor) }
+            .map { $0.containerBagColor }
+        )
+        result.subtracting(alreadyFoundContainers).forEach {
+            let newFilter = result.union(alreadyFoundContainers)
             result.formUnion(findAllowedOuterBags(for: $0, in: instructions, alreadyFoundContainers: newFilter))
         }
         return result

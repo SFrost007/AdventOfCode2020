@@ -27,6 +27,7 @@ class Day7Tests: AoCTestCase {
         XCTAssertEqual(example.part1(), 4)
         
         print("Answer for Day 7 Part 1: \(myInput.part1())")
+        XCTAssertEqual(myInput.part1(), 370)
         measure {
             let _ = myInput.part1()
         }
@@ -37,6 +38,7 @@ class Day7Tests: AoCTestCase {
         XCTAssertEqual(examplePart2.part2(), 126)
         
         print("Answer for Day 7 Part 2: \(myInput.part2())")
+        XCTAssertEqual(myInput.part2(), 29547)
         measure {
             let _ = myInput.part2()
         }
