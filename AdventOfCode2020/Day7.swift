@@ -32,7 +32,7 @@ class Day7 {
     // MARK: - Problem cases
     
     func part1() -> Int {
-        return Self.findAllowedOuterBags(for: ["shiny gold"], in: inputData).count
+        return Self.findAllowedOuterBags(for: "shiny gold", in: inputData).count
     }
     
     func part2() -> Int {
@@ -63,8 +63,27 @@ class Day7 {
         return Instruction(containerBagColor: outerSplit[0], innerBags: innerBags)
     }
     
-    static func findAllowedOuterBags(for colors: [String], in instructions: [Instruction]) -> [String] {
-        return []
+    static func findAllowedOuterBags(
+        for searchColor: String,
+        in instructions: [Instruction],
+        alreadyFoundContainers: Set<String> = []
+    ) -> Set<String> {
+        var result: Set<String> = []
+        
+        for instruction in instructions {
+            if alreadyFoundContainers.contains(instruction.containerBagColor) { continue }
+            for innerBag in instruction.innerBags {
+                if innerBag.color == searchColor {
+                    result.insert(instruction.containerBagColor)
+                }
+            }
+        }
+        
+        let newFilter = result.union(alreadyFoundContainers)
+        result.forEach {
+            result.formUnion(findAllowedOuterBags(for: $0, in: instructions, alreadyFoundContainers: newFilter))
+        }
+        return result
     }
     
 }

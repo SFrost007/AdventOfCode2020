@@ -22,7 +22,7 @@ class Day7Tests: AoCTestCase {
     }
     
     func testPart1() {
-        XCTAssertEqual(Day7.findAllowedOuterBags(for: ["shiny gold"], in: example.inputData),
+        XCTAssertEqual(Day7.findAllowedOuterBags(for: "shiny gold", in: example.inputData),
                        ["bright white", "muted yellow", "dark orange", "light red"])
         XCTAssertEqual(example.part1(), 4)
         
