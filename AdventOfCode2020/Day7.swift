@@ -36,7 +36,7 @@ class Day7 {
     }
     
     func part2() -> Int {
-        fatalError("Not yet implemented")
+        return Self.countBags(outerColor: "shiny gold", instructions: inputData) - 1
     }
     
     // MARK: - Worker functions
@@ -84,6 +84,13 @@ class Day7 {
             result.formUnion(findAllowedOuterBags(for: $0, in: instructions, alreadyFoundContainers: newFilter))
         }
         return result
+    }
+    
+    static func countBags(outerColor: String, instructions: [Instruction]) -> Int {
+        let instruction = instructions.first { $0.containerBagColor == outerColor }!
+        return instruction.innerBags.map {
+            $0.count * countBags(outerColor: $0.color, instructions: instructions)
+        }.reduce(1, +)
     }
     
 }
