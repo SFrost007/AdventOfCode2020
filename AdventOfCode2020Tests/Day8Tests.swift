@@ -14,8 +14,7 @@ class Day8Tests: AoCTestCase {
     let myInput = Day8(inputURL: urlForMyInputData(day: 8))
     
     func testPart1() {
-        XCTAssertEqual(Day8.findSomething(in: example.inputData[0]), 123)
-        XCTAssertEqual(example.part1(), 123)
+        XCTAssertEqual(example.part1(), 5)
         
         print("Answer for Day 8 Part 1: \(myInput.part1())")
         measure {
@@ -24,7 +23,6 @@ class Day8Tests: AoCTestCase {
     }
     
     func testPart2() {
-        XCTAssertEqual(Day8.findSomething(in: example.inputData[0]), 123)
         XCTAssertEqual(example.part2(), 123)
         
         print("Answer for Day 8 Part 2: \(myInput.part2())")
