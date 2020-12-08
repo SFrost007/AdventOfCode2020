@@ -9,11 +9,11 @@ import Foundation
 
 class Day8 {
     
-    enum Operation: String {
-        case nop, acc, jmp
-    }
-    
     struct Instruction {
+        enum Operation: String {
+            case nop, acc, jmp
+        }
+
         let opp: Operation
         let arg: Int
     }
@@ -23,20 +23,17 @@ class Day8 {
     let inputData: [Instruction]
     
     init(inputURL: URL) {
-        inputData = try! String(contentsOf: inputURL).components(separatedBy: .newlines).filter { !$0.isEmpty }
+        inputData = try! String(contentsOf: inputURL)
+            .components(separatedBy: .newlines)
+            .filter { !$0.isEmpty }
             .map { $0.components(separatedBy: .whitespaces) }
-            .map {
-                let opp = Operation(rawValue: $0[0])!
-                let arg = Int($0[1].replacingOccurrences(of: "+", with: ""))!
-                return Instruction(opp: opp, arg: arg)
-            }
+            .map { return Instruction(opp: Instruction.Operation(rawValue: $0[0])!, arg: Int($0[1])!) }
     }
     
     // MARK: - Problem cases
     
     func part1() -> Int {
-        let (_, result) = runProgram(inputData)
-        return result
+        return runProgram(inputData).1
     }
     
     func part2() -> Int {
@@ -55,8 +52,7 @@ class Day8 {
     // MARK: - Worker functions
     
     private func runProgram(_ program: [Instruction]) -> (Bool, Int) {
-        var pc = 0
-        var acc = 0
+        var pc = 0, acc = 0
         var visited: Set<Int> = []
         while pc < program.count && !visited.contains(pc) {
             //print("@\(pc): \(program[pc].opp.rawValue) \(program[pc].arg)")
