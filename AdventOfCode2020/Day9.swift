@@ -23,8 +23,11 @@ class Day9 {
         return Self.findFirstInvalid(in: inputData, preamble: preamble)
     }
     
-    func part2() -> Int {
-        fatalError("Not yet implemented")
+    func part2(preamble: Int) -> Int {
+        let invalidNumber = Self.findFirstInvalid(in: inputData, preamble: preamble)
+        let range = Self.findContiguousRange(in: inputData, summingTo: invalidNumber)
+        let subarray = inputData[range]
+        return subarray.min()! + subarray.max()!
     }
     
     // MARK: - Worker functions
@@ -52,6 +55,17 @@ class Day9 {
             }
         }
         return false
+    }
+    
+    static func findContiguousRange(in input: [Int], summingTo: Int) -> Range<Int> {
+        for i in 0..<input.count {
+            for j in i+1..<input.count {
+                let sum = input[i...j].reduce(0, +)
+                if sum == summingTo { return Range(i...j) }
+                if sum > summingTo { break }
+            }
+        }
+        fatalError("No result found")
     }
     
 }

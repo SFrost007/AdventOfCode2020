@@ -23,11 +23,13 @@ class Day9Tests: AoCTestCase {
     }
     
     func testPart2() {
-        XCTAssertEqual(example.part2(), 123)
+        XCTAssertEqual(Day9.findFirstInvalid(in: example.inputData, preamble: 5), 127)
+        XCTAssertEqual(Day9.findContiguousRange(in: example.inputData, summingTo: 127), Range(2...5))
+        XCTAssertEqual(example.part2(preamble: 5), 62)
         
-        print("Answer for Day 9 Part 2: \(myInput.part2())")
+        print("Answer for Day 9 Part 2: \(myInput.part2(preamble: 25))")
         measure {
-            let _ = myInput.part2()
+            let _ = myInput.part2(preamble: 25)
         }
     }
 
