@@ -30,7 +30,28 @@ class Day9 {
     // MARK: - Worker functions
     
     static func findFirstInvalid(in input: [Int], preamble: Int) -> Int {
-        fatalError("Not yet implemented")
+        guard input.count > preamble else { fatalError("Input too short") }
+        for i in preamble..<input.count {
+            let lastXItems = input[i-preamble..<i]
+            let thisValue = input[i]
+            guard thisValue > lastXItems.min()! * 2 else { return thisValue }
+            guard thisValue < lastXItems.max()! * 2 else { return thisValue }
+            if !sumComponentsExist(in: Array(lastXItems), total: thisValue) {
+                return thisValue
+            }
+        }
+        fatalError("No result found")
+    }
+    
+    private static func sumComponentsExist(in array: [Int], total: Int) -> Bool {
+        for i in 0..<array.count {
+            for j in i+1..<array.count {
+                if array[i] + array[j] == total {
+                    return true
+                }
+            }
+        }
+        return false
     }
     
 }
