@@ -43,6 +43,10 @@
 		F4DBB228257CD19200F3786F /* Day6Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DBB227257CD19200F3786F /* Day6Tests.swift */; };
 		F4DBB22C257CD1CE00F3786F /* Day6_Example.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4DBB22B257CD1CE00F3786F /* Day6_Example.txt */; };
 		F4DBB232257CD1F100F3786F /* Day6_MyInput.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4DBB231257CD1F100F3786F /* Day6_MyInput.txt */; };
+		F4F63D472582174200D03263 /* Day10.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F63D462582174100D03263 /* Day10.swift */; };
+		F4F63D4B2582174800D03263 /* Day10Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F63D4A2582174800D03263 /* Day10Tests.swift */; };
+		F4F63D4E2582175700D03263 /* Day10_Example.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4F63D4C2582175600D03263 /* Day10_Example.txt */; };
+		F4F63D4F2582175700D03263 /* Day10_MyInput.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4F63D4D2582175700D03263 /* Day10_MyInput.txt */; };
 		F4F746F025784934000F3978 /* AdventOfCode2020.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4F746E625784933000F3978 /* AdventOfCode2020.framework */; };
 		F4F747032578494E000F3978 /* Day1.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F747022578494E000F3978 /* Day1.swift */; };
 		F4F7470725784961000F3978 /* Day1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F7470625784961000F3978 /* Day1Tests.swift */; };
@@ -95,6 +99,10 @@
 		F4DBB227257CD19200F3786F /* Day6Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day6Tests.swift; sourceTree = "<group>"; };
 		F4DBB22B257CD1CE00F3786F /* Day6_Example.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Day6_Example.txt; sourceTree = "<group>"; };
 		F4DBB231257CD1F100F3786F /* Day6_MyInput.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Day6_MyInput.txt; sourceTree = "<group>"; };
+		F4F63D462582174100D03263 /* Day10.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day10.swift; sourceTree = "<group>"; };
+		F4F63D4A2582174800D03263 /* Day10Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day10Tests.swift; sourceTree = "<group>"; };
+		F4F63D4C2582175600D03263 /* Day10_Example.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Day10_Example.txt; sourceTree = "<group>"; };
+		F4F63D4D2582175700D03263 /* Day10_MyInput.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Day10_MyInput.txt; sourceTree = "<group>"; };
 		F4F746E625784933000F3978 /* AdventOfCode2020.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdventOfCode2020.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4F746EA25784933000F3978 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4F746EF25784934000F3978 /* AdventOfCode2020Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdventOfCode2020Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +160,7 @@
 				F448F5D7257E3DF400DFC858 /* Day7.swift */,
 				F48E7275257F607C005C2AFC /* Day8.swift */,
 				F48E729625802512005C2AFC /* Day9.swift */,
+				F4F63D462582174100D03263 /* Day10.swift */,
 				F4F746EA25784933000F3978 /* Info.plist */,
 			);
 			path = AdventOfCode2020;
@@ -169,6 +178,7 @@
 				F448F5D1257E3DED00DFC858 /* Day7Tests.swift */,
 				F48E7279257F6083005C2AFC /* Day8Tests.swift */,
 				F48E729A2580251A005C2AFC /* Day9Tests.swift */,
+				F4F63D4A2582174800D03263 /* Day10Tests.swift */,
 				F4F7470E257849F5000F3978 /* InputData */,
 				F4F746F625784934000F3978 /* Info.plist */,
 				F413EAC92578EB8400CA5BE2 /* AoCTestCase.swift */,
@@ -198,6 +208,8 @@
 				F48E727F257F608F005C2AFC /* Day8_MyInput.txt */,
 				F48E72A02580252F005C2AFC /* Day9_Example.txt */,
 				F48E72A12580252F005C2AFC /* Day9_MyInput.txt */,
+				F4F63D4C2582175600D03263 /* Day10_Example.txt */,
+				F4F63D4D2582175700D03263 /* Day10_MyInput.txt */,
 			);
 			path = InputData;
 			sourceTree = "<group>";
@@ -302,6 +314,7 @@
 			files = (
 				F48E72A32580252F005C2AFC /* Day9_MyInput.txt in Resources */,
 				F4B5A8DA257B75B600091856 /* Day5_MyInput.txt in Resources */,
+				F4F63D4F2582175700D03263 /* Day10_MyInput.txt in Resources */,
 				F4B5A8AA2578F54300091856 /* Day1_Example.txt in Resources */,
 				F4B5A8AC2578F54300091856 /* Day2_MyInput.txt in Resources */,
 				F448F5E4257E4D5B00DFC858 /* Day7_Example_Part2.txt in Resources */,
@@ -309,6 +322,7 @@
 				F4DBB232257CD1F100F3786F /* Day6_MyInput.txt in Resources */,
 				F4DBB22C257CD1CE00F3786F /* Day6_Example.txt in Resources */,
 				F448F5DD257E3DFE00DFC858 /* Day7_Example.txt in Resources */,
+				F4F63D4E2582175700D03263 /* Day10_Example.txt in Resources */,
 				F413EAC02578DF3B00CA5BE2 /* Day3_Example.txt in Resources */,
 				F4B5A8BA257A099200091856 /* Day4_Example.txt in Resources */,
 				F48E7281257F608F005C2AFC /* Day8_MyInput.txt in Resources */,
@@ -334,6 +348,7 @@
 				F448F5D8257E3DF400DFC858 /* Day7.swift in Sources */,
 				F48E7276257F607C005C2AFC /* Day8.swift in Sources */,
 				F4B5A8D6257B74E800091856 /* Day5.swift in Sources */,
+				F4F63D472582174200D03263 /* Day10.swift in Sources */,
 				F413EAB02578D2DD00CA5BE2 /* Day3.swift in Sources */,
 				F413EA9E25784E6100CA5BE2 /* Day2.swift in Sources */,
 				F48E729725802512005C2AFC /* Day9.swift in Sources */,
@@ -346,6 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4B5A8E0257B763400091856 /* Day5Tests.swift in Sources */,
+				F4F63D4B2582174800D03263 /* Day10Tests.swift in Sources */,
 				F4F7470725784961000F3978 /* Day1Tests.swift in Sources */,
 				F448F5D2257E3DED00DFC858 /* Day7Tests.swift in Sources */,
 				F48E727A257F6083005C2AFC /* Day8Tests.swift in Sources */,
