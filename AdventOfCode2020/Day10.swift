@@ -43,9 +43,14 @@ class Day10 {
             }
         }
     }
-    
-    static func findArrangements(in input: [Int]) -> Int {
-        fatalError("Not yet implemented")
+
+    // Requires input array to be pre-sorted and conformant to the rules (i.e. no gaps greater than 3)
+    private static func findArrangements(in input: [Int]) -> Int {
+        var permutationsUptoIndex = [0: 1]
+        for value in input {
+            permutationsUptoIndex[value] = (1...3).compactMap { permutationsUptoIndex[value - $0] }.reduce(0, +)
+        }
+        return permutationsUptoIndex[input.last!]!
     }
     
 }

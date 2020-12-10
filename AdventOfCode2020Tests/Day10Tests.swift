@@ -30,7 +30,8 @@ class Day10Tests: AoCTestCase {
         let simpleExample = Day10(inputURL: AoCTestCase.urlForExampleData(day: 10, part: 0))
         XCTAssertEqual(simpleExample.part2(), 8)
         XCTAssertEqual(example.part2(), 19208)
-        
+
+        XCTAssertEqual(myInput.part2(), 12089663946752)
         print("Answer for Day 10 Part 2: \(myInput.part2())")
         measure {
             let _ = myInput.part2()
