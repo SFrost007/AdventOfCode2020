@@ -47,6 +47,7 @@
 		F4F63D4B2582174800D03263 /* Day10Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F63D4A2582174800D03263 /* Day10Tests.swift */; };
 		F4F63D4E2582175700D03263 /* Day10_Example.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4F63D4C2582175600D03263 /* Day10_Example.txt */; };
 		F4F63D4F2582175700D03263 /* Day10_MyInput.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4F63D4D2582175700D03263 /* Day10_MyInput.txt */; };
+		F4F63D552582535300D03263 /* Day10_Example_Part0.txt in Resources */ = {isa = PBXBuildFile; fileRef = F4F63D542582535300D03263 /* Day10_Example_Part0.txt */; };
 		F4F746F025784934000F3978 /* AdventOfCode2020.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4F746E625784933000F3978 /* AdventOfCode2020.framework */; };
 		F4F747032578494E000F3978 /* Day1.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F747022578494E000F3978 /* Day1.swift */; };
 		F4F7470725784961000F3978 /* Day1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F7470625784961000F3978 /* Day1Tests.swift */; };
@@ -103,6 +104,7 @@
 		F4F63D4A2582174800D03263 /* Day10Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day10Tests.swift; sourceTree = "<group>"; };
 		F4F63D4C2582175600D03263 /* Day10_Example.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Day10_Example.txt; sourceTree = "<group>"; };
 		F4F63D4D2582175700D03263 /* Day10_MyInput.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Day10_MyInput.txt; sourceTree = "<group>"; };
+		F4F63D542582535300D03263 /* Day10_Example_Part0.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Day10_Example_Part0.txt; sourceTree = "<group>"; };
 		F4F746E625784933000F3978 /* AdventOfCode2020.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdventOfCode2020.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4F746EA25784933000F3978 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4F746EF25784934000F3978 /* AdventOfCode2020Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdventOfCode2020Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -210,6 +212,7 @@
 				F48E72A12580252F005C2AFC /* Day9_MyInput.txt */,
 				F4F63D4C2582175600D03263 /* Day10_Example.txt */,
 				F4F63D4D2582175700D03263 /* Day10_MyInput.txt */,
+				F4F63D542582535300D03263 /* Day10_Example_Part0.txt */,
 			);
 			path = InputData;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				F4F63D4F2582175700D03263 /* Day10_MyInput.txt in Resources */,
 				F4B5A8AA2578F54300091856 /* Day1_Example.txt in Resources */,
 				F4B5A8AC2578F54300091856 /* Day2_MyInput.txt in Resources */,
+				F4F63D552582535300D03263 /* Day10_Example_Part0.txt in Resources */,
 				F448F5E4257E4D5B00DFC858 /* Day7_Example_Part2.txt in Resources */,
 				F48E72A22580252F005C2AFC /* Day9_Example.txt in Resources */,
 				F4DBB232257CD1F100F3786F /* Day6_MyInput.txt in Resources */,

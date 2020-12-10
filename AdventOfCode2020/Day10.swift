@@ -25,7 +25,7 @@ class Day10 {
     }
     
     func part2() -> Int {
-        fatalError("Not yet implemented")
+        return Self.findArrangements(in: inputData.sorted())
     }
     
     // MARK: - Worker functions
@@ -42,6 +42,10 @@ class Day10 {
             default: fatalError("Invalid joltage jump")
             }
         }
+    }
+    
+    static func findArrangements(in input: [Int]) -> Int {
+        fatalError("Not yet implemented")
     }
     
 }
