@@ -31,7 +31,17 @@ class Day10 {
     // MARK: - Worker functions
     
     static func findJoltageJumps(in input: [Int]) -> (Int, Int, Int) {
-        fatalError("Not yet implemented")
+        let sorted = input.sorted()
+        let jumps = [sorted[0]] + sorted[1...].enumerated().map { previousIndex, item in item - sorted[previousIndex] }
+        // Final tuple item is initialised as 1 because device's built-in jump (not included in input) is 3
+        return jumps.reduce(into: (0, 0, 1)) { (tuple, value) in
+            switch value {
+            case 1: tuple.0 += 1
+            case 2: tuple.1 += 1
+            case 3: tuple.2 += 1
+            default: fatalError("Invalid joltage jump")
+            }
+        }
     }
     
 }
