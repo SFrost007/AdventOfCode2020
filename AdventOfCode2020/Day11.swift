@@ -7,6 +7,8 @@
 
 import Foundation
 
+/// TODO: Both parts of this are messy and inefficient, and there's significant overlap between them
+/// that could probably be refactored. This was a case of "get the answer and move on" unfortunately :(
 class Day11 {
 
     enum SquareState: Character {
@@ -27,7 +29,7 @@ class Day11 {
             .map { $0.map { SquareState(rawValue: $0)! } }
     }
     
-    // MARK: - Problem cases
+    // MARK: - Part 1
     
     func part1() -> Int {
         var lastState: GridState = []
@@ -38,12 +40,6 @@ class Day11 {
         }
         return Self.countOccupiedSeats(in: currentState)
     }
-    
-    func part2() -> Int {
-        fatalError("Not yet implemented")
-    }
-    
-    // MARK: - Worker functions
 
     private static func iterate(_ gridState: GridState) -> GridState {
         var newState = gridState
@@ -61,18 +57,77 @@ class Day11 {
         return newState
     }
 
-    // TODO: This is really inefficient
     private static func countOccupiedNeighbours(x: Int, y: Int, in gridState: GridState) -> Int {
         var count = 0
         for checkX in x-1...x+1 {
             for checkY in y-1...y+1 {
                 guard checkX != x || checkY != y else { continue }
-                guard checkX >= 0 && checkX < gridState[0].count else { continue }
-                guard checkY >= 0 && checkY < gridState.count else { continue }
+                guard positionIsValid(x: checkX, y: checkY, in: gridState) else { continue }
                 count += gridState[checkY][checkX] == .occupied ? 1 : 0
             }
         }
         return count
+    }
+
+    // MARK: - Part 2
+
+    func part2() -> Int {
+        var lastState: GridState = []
+        var currentState = inputData
+        while lastState != currentState {
+            lastState = currentState
+            currentState = Self.iteratePart2(currentState)
+        }
+        return Self.countOccupiedSeats(in: currentState)
+    }
+
+    private static func iteratePart2(_ gridState: GridState) -> GridState {
+        var newState = gridState
+        for (y, row) in newState.enumerated() {
+            for (x, square) in row.enumerated() {
+                guard square != .floor else { continue }
+                let occupiedNeighbours = countOccupiedSeatsAround(x: x, y: y, in: gridState)
+                if square == .empty && occupiedNeighbours == 0 {
+                    newState[y][x] = .occupied
+                } else if square == .occupied && occupiedNeighbours >= 5 {
+                    newState[y][x] = .empty
+                }
+            }
+        }
+        return newState
+    }
+
+    private static func countOccupiedSeatsAround(x: Int, y: Int, in gridState: GridState) -> Int {
+        var count = 0
+        for dx in -1...1 {
+            for dy in -1...1 {
+                count += isNextSeatOccupied(x: x, y: y, dx: dx, dy: dy, in: gridState) ? 1 : 0
+            }
+        }
+        return count
+    }
+
+    private static func isNextSeatOccupied(x: Int, y: Int, dx: Int, dy: Int, in gridState: GridState) -> Bool {
+        guard dx != 0 || dy != 0 else { return false }
+        var nextX = x + dx, nextY = y + dy
+        while positionIsValid(x: nextX, y: nextY, in: gridState) {
+            switch gridState[nextY][nextX] {
+            case .empty: return false
+            case .occupied: return true
+            case .floor: break
+            }
+            nextX += dx
+            nextY += dy
+        }
+        return false
+    }
+
+    // MARK: - Shared helper functions
+
+    private static func positionIsValid(x: Int, y: Int, in gridState: GridState) -> Bool {
+        guard x >= 0 && x < gridState[0].count else { return false }
+        guard y >= 0 && y < gridState.count else { return false }
+        return true
     }
 
     private static func countOccupiedSeats(in gridState: GridState) -> Int {
