@@ -106,7 +106,7 @@ class Day12 {
         var newPosition = position
         var newWaypoint = waypoint
         var newHeading = heading
-        if let waypoint = waypoint {
+        if let waypoint = waypoint { // Part 2
             switch statement.instruction {
             case .north, .south:
                 newWaypoint?.y += statement.absoluteValue
@@ -115,12 +115,10 @@ class Day12 {
             case .rotateRight, .rotateLeft:
                 newWaypoint = getNewWaypoint(statement: statement, waypoint: waypoint, shipPosition: position)
             case .forward:
-                let waypointDelta = Position(x: waypoint.x - position.x, y: waypoint.y - position.y)
-                newPosition.x += waypointDelta.x * statement.value
-                newPosition.y += waypointDelta.y * statement.value
-                newWaypoint = Position(x: newPosition.x + waypointDelta.x, y: newPosition.y + waypointDelta.y)
+                newPosition.x += waypoint.x * statement.value
+                newPosition.y += waypoint.y * statement.value
             }
-        } else {
+        } else { // Part 1
             switch statement.instruction {
             case .north, .south:
                 newPosition.y += statement.absoluteValue
@@ -144,15 +142,12 @@ class Day12 {
     
     static func getNewWaypoint(statement: Statement, waypoint: Position, shipPosition: Position) -> Position {
         guard statement.instruction == .rotateLeft || statement.instruction == .rotateRight else { fatalError() }
-        let waypointDelta = Position(x: waypoint.x - shipPosition.x, y: waypoint.y - shipPosition.y)
-        let newDelta: Position
         switch statement.absoluteValue {
-        case 90:  newDelta = Position(x: waypointDelta.y, y: -waypointDelta.x)
-        case 180: newDelta = Position(x: -waypointDelta.x, y: -waypointDelta.y)
-        case 270: newDelta = Position(x: -waypointDelta.y, y: +waypointDelta.x)
+        case 90:  return Position(x: waypoint.y, y: -waypoint.x)
+        case 180: return Position(x: -waypoint.x, y: -waypoint.y)
+        case 270: return Position(x: -waypoint.y, y: +waypoint.x)
         default: fatalError("Unhandled rotation amount: \(statement.absoluteValue)")
         }
-        return Position(x: shipPosition.x + newDelta.x, y: shipPosition.y + newDelta.y)
     }
     
 }
