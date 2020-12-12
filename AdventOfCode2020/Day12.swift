@@ -9,8 +9,7 @@ import Foundation
 
 class Day12 {
     
-    enum Heading: Int, CustomStringConvertible {
-        
+    enum Heading: Int {
         case north, east, south, west
         
         func toInstruction() -> Instruction {
@@ -21,24 +20,11 @@ class Day12 {
             case .west: return .west
             }
         }
-        
-        var description: String {
-            switch self {
-            case .north: return "North"
-            case .east: return "East"
-            case .south: return "South"
-            case .west: return "West"
-            }
-        }
     }
     
-    struct Position: CustomStringConvertible {
+    struct Position {
         var x: Int
         var y: Int
-        
-        var description: String {
-            return "(\(x),\(y))"
-        }
     }
     
     enum Instruction: String {
@@ -51,13 +37,9 @@ class Day12 {
         case forward = "F"
     }
     
-    struct Statement: CustomStringConvertible {
+    struct Statement {
         let instruction: Instruction
         let value: Int
-        
-        var description: String {
-            return "\(instruction.rawValue)\(value)"
-        }
     }
     
     // MARK: - Initialisation
@@ -97,7 +79,6 @@ class Day12 {
         var position = startPosition
         for statement in statements {
             (position, waypoint, heading) = Self.processStatement(statement, position: position, waypoint: waypoint, heading: heading)
-            print("\(statement) => Position: \(position), Waypoint: \(String(describing: waypoint)), Heading: \(heading)")
         }
         return position
     }
