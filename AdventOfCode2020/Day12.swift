@@ -81,6 +81,7 @@ class Day12 {
     
     // MARK: - Worker functions
     
+    // Note: Specifying a non-nil waypoint changes the behaviour completely for part2
     private static func getEndingPosition(
         statements: [Statement],
         startPosition: Position = Position(x: 0, y: 0),
