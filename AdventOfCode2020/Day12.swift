@@ -40,6 +40,19 @@ class Day12 {
     struct Statement {
         let instruction: Instruction
         let value: Int
+        
+        var absoluteValue: Int {
+            switch instruction {
+            case .north, .east, .forward:
+                return value
+            case .south, .west:
+                return -value
+            case .rotateLeft:
+                return 360 - (value % 360)
+            case .rotateRight:
+                return value % 360
+            }
+        }
     }
     
     // MARK: - Initialisation
@@ -94,14 +107,10 @@ class Day12 {
         var newHeading = heading
         if let waypoint = waypoint {
             switch statement.instruction {
-            case .north:
-                newWaypoint?.y += statement.value
-            case .south:
-                newWaypoint?.y -= statement.value
-            case .east:
-                newWaypoint?.x += statement.value
-            case .west:
-                newWaypoint?.x -= statement.value
+            case .north, .south:
+                newWaypoint?.y += statement.absoluteValue
+            case .east, .west:
+                newWaypoint?.x += statement.absoluteValue
             case .rotateRight, .rotateLeft:
                 newWaypoint = getNewWaypoint(statement: statement, waypoint: waypoint, shipPosition: position)
             case .forward:
@@ -112,14 +121,10 @@ class Day12 {
             }
         } else {
             switch statement.instruction {
-            case .north:
-                newPosition.y += statement.value
-            case .south:
-                newPosition.y -= statement.value
-            case .east:
-                newPosition.x += statement.value
-            case .west:
-                newPosition.x -= statement.value
+            case .north, .south:
+                newPosition.y += statement.absoluteValue
+            case .east, .west:
+                newPosition.x += statement.absoluteValue
             case .rotateRight, .rotateLeft:
                 newHeading = getNewHeading(statement: statement, heading: heading)
             case .forward:
@@ -132,25 +137,19 @@ class Day12 {
     
     static func getNewHeading(statement: Statement, heading: Heading) -> Heading {
         guard statement.instruction == .rotateLeft || statement.instruction == .rotateRight else { fatalError() }
-        guard statement.value <= 360 else { fatalError("Rotations beyond 360 degrees not handled") }
-        // Map a left rotation into a negative right rotation
-        let rotation = statement.instruction == .rotateRight ? statement.value : 360 - statement.value
-        let compassStages = rotation / 90
+        let compassStages = statement.absoluteValue / 90
         return Heading(rawValue: (heading.rawValue + compassStages) % 4)!
     }
     
     static func getNewWaypoint(statement: Statement, waypoint: Position, shipPosition: Position) -> Position {
         guard statement.instruction == .rotateLeft || statement.instruction == .rotateRight else { fatalError() }
-        guard statement.value <= 360 else { fatalError("Rotations beyond 360 degrees not handled") }
-        // Map a left rotation into a negative right rotation
-        let rotation = statement.instruction == .rotateRight ? statement.value : 360 - statement.value
         let waypointDelta = Position(x: waypoint.x - shipPosition.x, y: waypoint.y - shipPosition.y)
         let newDelta: Position
-        switch rotation {
+        switch statement.absoluteValue {
         case 90:  newDelta = Position(x: waypointDelta.y, y: -waypointDelta.x)
         case 180: newDelta = Position(x: -waypointDelta.x, y: -waypointDelta.y)
         case 270: newDelta = Position(x: -waypointDelta.y, y: +waypointDelta.x)
-        default: fatalError("Unhandled rotation amount: \(rotation)")
+        default: fatalError("Unhandled rotation amount: \(statement.absoluteValue)")
         }
         return Position(x: shipPosition.x + newDelta.x, y: shipPosition.y + newDelta.y)
     }
