@@ -17,6 +17,7 @@ class Day13Tests: AoCTestCase {
         XCTAssertEqual(example.targetTime, 939)
         XCTAssertEqual(example.busNumbers, [7,13,19,31,59])
         XCTAssertEqual(example.part1(), 295)
+        XCTAssertEqual(myInput.part1(), 3789)
         
         print("Answer for Day 13 Part 1: \(myInput.part1())")
         measure {

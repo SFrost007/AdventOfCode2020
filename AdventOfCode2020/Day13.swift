@@ -23,7 +23,18 @@ class Day13 {
     // MARK: - Problem cases
     
     func part1() -> Int {
-        fatalError("Not yet implemented")
+        var earliestTimes: [Int: Int] = [:]
+        for bus in busNumbers {
+            var repeatTime = 0
+            while repeatTime < targetTime {
+                repeatTime += bus
+            }
+            earliestTimes[bus] = repeatTime
+        }
+        let earliestTime = earliestTimes.map { $0.value }.sorted().first!
+        let busNumber = earliestTimes.first { $0.value == earliestTime }!.key
+        let waitingTime = earliestTime - targetTime
+        return busNumber * waitingTime
     }
     
     func part2() -> Int {
