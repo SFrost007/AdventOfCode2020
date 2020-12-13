@@ -26,7 +26,9 @@ class Day13Tests: AoCTestCase {
     }
     
     func testPart2() {
-        XCTAssertEqual(example.part2(), 123)
+        XCTAssertEqual(example.busSequence, [7,13,0,0,59,0,31,19])
+        XCTAssertEqual(Day13.findLowestCommonMultiple([12,15,10,75]), 300)
+        XCTAssertEqual(example.part2(), 1068781)
         
         print("Answer for Day 13 Part 2: \(myInput.part2())")
         measure {
