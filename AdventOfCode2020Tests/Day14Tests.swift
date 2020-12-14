@@ -10,7 +10,6 @@ import XCTest
 
 class Day14Tests: AoCTestCase {
     
-    let example = Day14(inputURL: urlForExampleData(day: 14))
     let myInput = Day14(inputURL: urlForMyInputData(day: 14))
     
     func testHelperMethods() {
@@ -32,6 +31,7 @@ class Day14Tests: AoCTestCase {
     }
     
     func testPart1() {
+        let example = Day14(inputURL: AoCTestCase.urlForExampleData(day: 14))
         XCTAssertEqual(example.part1(), 165)
         XCTAssertEqual(myInput.part1(), 13496669152158)
         
@@ -42,7 +42,8 @@ class Day14Tests: AoCTestCase {
     }
     
     func testPart2() {
-        XCTAssertEqual(example.part2(), 123)
+        let example = Day14(inputURL: AoCTestCase.urlForExampleData(day: 14, part: 2))
+        XCTAssertEqual(example.part2(), 208)
         
         print("Answer for Day 14 Part 2: \(myInput.part2())")
         measure {
