@@ -28,6 +28,10 @@ class Day14Tests: AoCTestCase {
         XCTAssertEqual(Day14.applyMaskToValue(mask: testMask, value: 11), 73)
         XCTAssertEqual(Day14.applyMaskToValue(mask: testMask, value: 101), 101)
         XCTAssertEqual(Day14.applyMaskToValue(mask: testMask, value: 0), 64)
+        
+        // Part 2
+        let addrMask = "000000000000000000000000000000X1001X"
+        XCTAssertEqual(Day14.applyMaskToAddress(mask: addrMask, address: 42).sorted(), [26, 27, 58, 59])
     }
     
     func testPart1() {
@@ -44,6 +48,7 @@ class Day14Tests: AoCTestCase {
     func testPart2() {
         let example = Day14(inputURL: AoCTestCase.urlForExampleData(day: 14, part: 2))
         XCTAssertEqual(example.part2(), 208)
+        XCTAssertEqual(myInput.part2(), 3278997609887)
         
         print("Answer for Day 14 Part 2: \(myInput.part2())")
         measure {
