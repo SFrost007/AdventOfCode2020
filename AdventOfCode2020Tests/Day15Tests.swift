@@ -15,28 +15,35 @@ class Day15Tests: AoCTestCase {
     
     func testPart1() {
         // Test data
-        XCTAssertEqual(Day15.part1(input: [0,3,6]), 436)
-        XCTAssertEqual(Day15.part1(input: [1,3,2]), 1)
-        XCTAssertEqual(Day15.part1(input: [2,1,3]), 10)
-        XCTAssertEqual(Day15.part1(input: [1,2,3]), 27)
-        XCTAssertEqual(Day15.part1(input: [2,3,1]), 78)
-        XCTAssertEqual(Day15.part1(input: [3,2,1]), 438)
-        XCTAssertEqual(Day15.part1(input: [3,1,2]), 1836)
+        XCTAssertEqual(Day15.getAnswer(input: [0,3,6], iterations: 2020), 436)
+        XCTAssertEqual(Day15.getAnswer(input: [1,3,2], iterations: 2020), 1)
+        XCTAssertEqual(Day15.getAnswer(input: [2,1,3], iterations: 2020), 10)
+        XCTAssertEqual(Day15.getAnswer(input: [1,2,3], iterations: 2020), 27)
+        XCTAssertEqual(Day15.getAnswer(input: [2,3,1], iterations: 2020), 78)
+        XCTAssertEqual(Day15.getAnswer(input: [3,2,1], iterations: 2020), 438)
+        XCTAssertEqual(Day15.getAnswer(input: [3,1,2], iterations: 2020), 1836)
         
-        print("Answer for Day 15 Part 1: \(Day15.part1(input: myInput))")
+        print("Answer for Day 15 Part 1: \(Day15.getAnswer(input: myInput, iterations: 2020))")
         measure {
-            let _ = Day15.part1(input: myInput)
+            let _ = Day15.getAnswer(input: myInput, iterations: 2020)
         }
     }
-    
-//    func testPart2() {
-//        XCTAssertEqual(Day15.findSomething(in: example.inputData[0]), 123)
-//        XCTAssertEqual(example.part2(), 123)
-//        
-//        print("Answer for Day 15 Part 2: \(myInput.part2())")
-//        measure {
-//            let _ = myInput.part2()
-//        }
-//    }
+
+    // Oddly simple, this isn't fast but gets the correct answer just by parameterising a constant
+    func testPart2() {
+        // Test data
+        XCTAssertEqual(Day15.getAnswer(input: [0,3,6], iterations: 30000000), 175594)
+        XCTAssertEqual(Day15.getAnswer(input: [1,3,2], iterations: 30000000), 2578)
+        XCTAssertEqual(Day15.getAnswer(input: [2,1,3], iterations: 30000000), 3544142)
+        XCTAssertEqual(Day15.getAnswer(input: [1,2,3], iterations: 30000000), 261214)
+        XCTAssertEqual(Day15.getAnswer(input: [2,3,1], iterations: 30000000), 6895259)
+        XCTAssertEqual(Day15.getAnswer(input: [3,2,1], iterations: 30000000), 18)
+        XCTAssertEqual(Day15.getAnswer(input: [3,1,2], iterations: 30000000), 362)
+
+        print("Answer for Day 15 Part 2: \(Day15.getAnswer(input: myInput, iterations: 30000000))")
+        measure {
+            let _ = Day15.getAnswer(input: myInput, iterations: 30000000)
+        }
+    }
 
 }
