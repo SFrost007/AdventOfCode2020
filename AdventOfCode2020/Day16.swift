@@ -11,7 +11,7 @@ class Day16 {
 
     typealias Ticket = [Int]
 
-    struct TicketField {
+    struct TicketField: Hashable {
         let fieldName: String
         let validRanges: [Range<Int>]
 
@@ -24,6 +24,10 @@ class Day16 {
                 let max = Int(numbers[1])!
                 return Range(min...max)
             }
+        }
+
+        func isValueValid(_ value: Int) -> Bool {
+            return validRanges.filter { $0.contains(value) }.count > 0
         }
     }
     
@@ -53,13 +57,22 @@ class Day16 {
     }
     
     func part2() -> Int {
-        fatalError("Not yet implemented")
+        return Self.findFieldIndexes(validTickets: validTickets, fields: fields)
+            .filter { $0.key.fieldName.hasPrefix("departure") }
+            .map { myTicket[$0.value] }
+            .reduce(1, *)
     }
     
     // MARK: - Worker functions
 
     var allFieldRanges: [Range<Int>] {
         return fields.flatMap { $0.validRanges }
+    }
+
+    var validTickets: [Ticket] {
+        return nearbyTickets
+            .filter { Self.invalidFieldValues(ticket: $0, allowedRanges: allFieldRanges).isEmpty }
+            + [myTicket]
     }
 
     static func invalidFieldValues(ticket: Ticket, allowedRanges: [Range<Int>]) -> [Int] {
@@ -70,6 +83,37 @@ class Day16 {
                 }
             }
             return true // Matched no ranges
+        }
+    }
+
+    static func findFieldIndexes(validTickets: [Ticket], fields: [TicketField]) -> [TicketField: Int] {
+        let valuesByField = ticketValuesGroupedByField(validTickets: validTickets)
+        var foundFields: [TicketField: Int] = [:]
+        while foundFields.count != fields.count {
+            let alreadyMatchedIndexes = foundFields.map { $0.value }
+            for field in fields {
+                var possibleIndexes: [Int] = []
+                for (index, fieldValues) in valuesByField.enumerated() {
+                    guard !alreadyMatchedIndexes.contains(index) else { continue }
+                    let validValues = fieldValues.filter { field.isValueValid($0) }
+                    if validValues.count == fieldValues.count {
+                        possibleIndexes.append(index)
+                    }
+                }
+                if possibleIndexes.count == 1 {
+                    foundFields[field] = possibleIndexes.first!
+                    // Note: Could optimise here by keeping the possible field indexes for previously processed fields,
+                    // then filtering the one we have a confirmed match for, and matching any that now count 1.
+                    break
+                }
+            }
+        }
+        return foundFields
+    }
+
+    static func ticketValuesGroupedByField(validTickets: [Ticket]) -> [[Int]] {
+        return (0..<validTickets[0].count).map { fieldIndex in
+            validTickets.map { $0[fieldIndex] }
         }
     }
     
