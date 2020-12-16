@@ -47,7 +47,9 @@ class Day16 {
     // MARK: - Problem cases
     
     func part1() -> Int {
-        fatalError("Not yet implemented")
+        return nearbyTickets
+            .flatMap { Self.invalidFieldValues(ticket: $0, allowedRanges: allFieldRanges) }
+            .reduce(0, +)
     }
     
     func part2() -> Int {
@@ -55,9 +57,20 @@ class Day16 {
     }
     
     // MARK: - Worker functions
-    
-    static func findSomething(in input: String) -> Int {
-        return -1
+
+    var allFieldRanges: [Range<Int>] {
+        return fields.flatMap { $0.validRanges }
+    }
+
+    static func invalidFieldValues(ticket: Ticket, allowedRanges: [Range<Int>]) -> [Int] {
+        return ticket.filter {
+            for range in allowedRanges {
+                if range.contains($0) {
+                    return false
+                }
+            }
+            return true // Matched no ranges
+        }
     }
     
 }
