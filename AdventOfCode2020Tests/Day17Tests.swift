@@ -23,11 +23,11 @@ class Day17Tests: AoCTestCase {
     }
     
     func testPart2() {
-        XCTAssertEqual(example.part2(), 123)
+        XCTAssertEqual(example.part2(), 848)
         
         print("Answer for Day 17 Part 2: \(myInput.part2())")
         measure {
-            let _ = myInput.part2()
+            XCTAssertEqual(myInput.part2(), 1680)
         }
     }
 
