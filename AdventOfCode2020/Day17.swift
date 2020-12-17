@@ -8,6 +8,8 @@
 import Foundation
 
 class Day17 {
+
+    typealias CubeState = [[[Bool]]]
     
     // MARK: - Initialisation
     
@@ -23,7 +25,14 @@ class Day17 {
     // MARK: - Problem cases
     
     func part1() -> Int {
-        fatalError("Not yet implemented")
+        var cubeState = [inputData]
+        cubeState.dumpState()
+        for i in 1...6 {
+            print("***** Iteration \(i)")
+            cubeState = Self.processCycle(inputState: cubeState)
+            cubeState.dumpState()
+        }
+        return Self.countActiveCubes(in: cubeState)
     }
     
     func part2() -> Int {
@@ -31,9 +40,82 @@ class Day17 {
     }
     
     // MARK: - Worker functions
-    
-    static func findSomething(in input: String) -> Int {
-        return -1
+
+    private static func processCycle(inputState: CubeState) -> CubeState {
+        let expandedCubeState = expandCubeState(inputState)
+        var newCubeState = expandedCubeState // Copy so we can modify as we go without affecting future checks
+        for (z, plane) in newCubeState.enumerated() {
+            for (y, row) in plane.enumerated() {
+                for (x, active) in row.enumerated() {
+                    let neighbours = activeNeighboursOf(x: x, y: y, z: z, in: expandedCubeState)
+                    if !active {
+                        if neighbours == 3 {
+                            newCubeState[z][y][x] = true
+                        }
+                    } else {
+                        if neighbours < 2 || neighbours > 3 {
+                            newCubeState[z][y][x] = false
+                        }
+                    }
+                }
+            }
+        }
+        return newCubeState
+    }
+
+    /// Expand the CubeState by one inactive cube in each dimension to prepare for another iteration
+    /// For now this unintelligently expands by one unit without checking whether that's needed
+    /// (e.g. if we already have a fully empty plane at the edge of the cube, this will still add another)
+    private static func expandCubeState(_ state: CubeState) -> CubeState {
+        var newCubeState = state
+
+        let existingHeight = state[0].count
+        let existingWidth = state[0][0].count
+        // There's definitely a better way of doing this, but ¯\_(ツ)_/¯
+        let emptyRow = String(repeating: ".", count: existingWidth+2).map { $0 == "#" }
+        let emptyPlane = String(repeating: ".", count: existingHeight+2).map { _ in emptyRow }
+
+        for (z, plane) in newCubeState.enumerated() {
+            for (y, row) in plane.enumerated() {
+                newCubeState[z][y] = [false] + row + [false]
+            }
+            newCubeState[z] = [emptyRow] + newCubeState[z] + [emptyRow]
+        }
+        return [emptyPlane] + newCubeState + [emptyPlane]
+    }
+
+    private static func activeNeighboursOf(x: Int, y: Int, z: Int, in state: CubeState) -> Int {
+        var neighbours = 0
+        for checkZ in max(z-1, 0)...min(z+1, state.count-1) {
+            for checkY in max(y-1, 0)...min(y+1, state[0].count-1) {
+                for checkX in max(x-1, 0)...min(x+1, state[0][0].count-1) {
+                    guard x != checkX || y != checkY || z != checkZ else { continue }
+                    neighbours += state[checkZ][checkY][checkX] ? 1 : 0
+                }
+            }
+        }
+        return neighbours
+    }
+
+    private static func countActiveCubes(in state: CubeState) -> Int {
+        return state.flatMap { $0.flatMap { $0 } }
+            .filter { $0 }
+            .count
     }
     
+}
+
+// MARK: - Debug logging helpers
+
+fileprivate extension Day17.CubeState {
+    func dumpState() {
+        let zOffset = Int(self.count/2)
+        for (z, plane) in self.enumerated() {
+            print("z=\(z - zOffset)")
+            for row in plane {
+                print(row.map { $0 ? "#" : "." }.joined())
+            }
+            print("")
+        }
+    }
 }

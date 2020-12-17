@@ -14,17 +14,15 @@ class Day17Tests: AoCTestCase {
     let myInput = Day17(inputURL: urlForMyInputData(day: 17))
     
     func testPart1() {
-        XCTAssertEqual(Day17.findSomething(in: example.inputData[0]), 123)
         XCTAssertEqual(example.part1(), 112)
         
         print("Answer for Day 17 Part 1: \(myInput.part1())")
         measure {
-            let _ = myInput.part1()
+            XCTAssertEqual(myInput.part1(), 263)
         }
     }
     
     func testPart2() {
-        XCTAssertEqual(Day17.findSomething(in: example.inputData[0]), 123)
         XCTAssertEqual(example.part2(), 123)
         
         print("Answer for Day 17 Part 2: \(myInput.part2())")
