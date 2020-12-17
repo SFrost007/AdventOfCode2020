@@ -26,11 +26,11 @@ class Day17 {
     
     func part1() -> Int {
         var cubeState = [inputData]
-        cubeState.dumpState()
-        for i in 1...6 {
-            print("***** Iteration \(i)")
+        //cubeState.dumpState()
+        for _ in 1...6 {
+            //print("***** Iteration \(i)")
             cubeState = Self.processCycle(inputState: cubeState)
-            cubeState.dumpState()
+            //cubeState.dumpState()
         }
         return Self.countActiveCubes(in: cubeState)
     }
@@ -104,10 +104,10 @@ class Day17 {
 
     func part2() -> Int {
         var hyperCubeState = [[inputData]]
-        for i in 1...6 {
-            print("***** Iteration \(i)")
+        for _ in 1...6 {
+            //print("***** Iteration \(i)")
             hyperCubeState = Self.processHyperCycle(inputState: hyperCubeState)
-            hyperCubeState.dumpState()
+            //hyperCubeState.dumpState()
         }
         return Self.countHyperActiveCubes(in: hyperCubeState)
     }
