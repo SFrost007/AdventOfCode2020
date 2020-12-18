@@ -26,12 +26,14 @@ class Day18 {
     }
     
     func part2() -> Int {
-        fatalError("Not yet implemented")
+        return inputData
+            .map { Self.calculateResult(equation: $0, plusHasPrecendence: true) }
+            .reduce(0, +)
     }
     
     // MARK: - Worker functions
     
-    static func calculateResult(equation: String) -> Int {
+    static func calculateResult(equation: String, plusHasPrecendence: Bool = false) -> Int {
         // Remove any bracketed sections recursively
         if let openBracketPos = equation.lastIndex(of: "(") {
             let closeBracketPos = equation[openBracketPos...].firstIndex(of: ")")!
@@ -39,13 +41,22 @@ class Day18 {
 
             let rangeExcludingBrackets = equation.index(openBracketPos, offsetBy: 1)..<closeBracketPos
             let subEquation = String(equation[rangeExcludingBrackets])
-            let subResult = calculateResult(equation: subEquation)
+            let subResult = calculateResult(equation: subEquation, plusHasPrecendence: plusHasPrecendence)
 
             var newEquation = equation
             newEquation.replaceSubrange(rangeIncludingBrackets, with: "\(subResult)")
-            return calculateResult(equation: newEquation)
+            return calculateResult(equation: newEquation, plusHasPrecendence: plusHasPrecendence)
         }
-        // Process equation sequentially as no brackets remain
+        // All brackets have been removed, solve the equation appropriately
+        if plusHasPrecendence {
+            return solveEquationWithPlusPrecedence(equation)
+        } else {
+            return solveEquationWithSequentialPrecedence(equation)
+        }
+    }
+
+    // Part 1
+    private static func solveEquationWithSequentialPrecedence(_ equation: String) -> Int {
         var operands = equation.components(separatedBy: .whitespaces)
         while operands.count > 1 {
             let param1 = Int(operands[0])!
@@ -62,6 +73,22 @@ class Day18 {
             operands.replaceSubrange(0...2, with: ["\(result)"])
         }
         return Int(operands.first!)!
+    }
+
+    // Part 2
+    // Assumes that the only operations are "+" and "*"
+    private static func solveEquationWithPlusPrecedence(_ equation: String) -> Int {
+        var operands = equation.components(separatedBy: .whitespaces)
+        while let plusIndex = operands.firstIndex(where: { $0 == "+"} ) {
+            let param1 = Int(operands[plusIndex-1])!
+            let param2 = Int(operands[plusIndex+1])!
+            let result = param1 + param2
+            operands.replaceSubrange(plusIndex-1...plusIndex+1, with: ["\(result)"])
+        }
+        return operands
+            .filter { $0 != "*" }
+            .compactMap { Int($0) }
+            .reduce(1, *)
     }
     
 }
